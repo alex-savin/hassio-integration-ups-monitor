@@ -14,6 +14,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 from homeassistant.helpers.typing import ConfigType
 from homeassistant.exceptions import ConfigEntryNotReady
+from homeassistant.helpers import config_validation as cv
 import aiohttp
 import async_timeout
 
@@ -21,6 +22,8 @@ from .const import DOMAIN, PLATFORMS, RECONNECT_DELAY, UPDATE_SIGNAL
 from .helpers import build_http_url, HTTP_TIMEOUT
 
 _LOGGER = logging.getLogger(__name__)
+
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 
 def _update_state(hass: HomeAssistant, entry_id: str, payload: str) -> None:
