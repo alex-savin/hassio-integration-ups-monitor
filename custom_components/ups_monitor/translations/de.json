@@ -1,0 +1,117 @@
+{
+  "title": "USV-Monitor",
+  "config": {
+    "error": {
+      "invalid_url": "Ungültige URL",
+      "cannot_connect": "Verbindung nicht möglich"
+    },
+    "step": {
+      "user": {
+        "title": "USV-Monitor verbinden",
+        "description": "Geben Sie die Server-URL des USV-Monitors und das optionale Aktualisierungsintervall ein.",
+        "data": {
+          "server_url": "Server-URL",
+          "update_interval": "Aktualisierungsintervall (Sekunden)"
+        }
+      }
+    }
+  },
+  "options": {
+    "abort": {
+      "no_devices": "Keine Geräte verfügbar."
+    },
+    "error": {
+      "cannot_connect": "Verbindung zum USV-Gerät nicht möglich. Bitte überprüfen Sie die Verbindungsdaten.",
+      "already_exists": "Ein Gerät mit diesem Namen existiert bereits."
+    },
+    "step": {
+      "init": {
+        "title": "USV-Monitor Optionen",
+        "menu_options": {
+          "add_device": "Neue USV hinzufügen",
+          "remove_device": "Gerät entfernen",
+          "reconfigure_device": "Gerät neu konfigurieren",
+          "set_interval": "Aktualisierungsintervall festlegen"
+        }
+      },
+      "add_device": {
+        "title": "USV-Gerät hinzufügen",
+        "description": "Geben Sie die Verbindungsdaten des Geräts ein. Die Verbindung wird getestet, bevor Sie zur Attributauswahl gelangen.",
+        "data": {
+          "device_name": "Gerätename",
+          "device_type": "Gerätetyp",
+          "device_host": "Geräte-Host",
+          "device_port": "Geräte-Port",
+          "username": "Benutzername",
+          "password": "Passwort"
+        }
+      },
+      "select_attributes": {
+        "title": "Attribute für {device_name} auswählen",
+        "description": "{attribute_count} Attribute gefunden. Wählen Sie aus, welche überwacht werden sollen. Alle Attribute sind standardmäßig ausgewählt.",
+        "data": {
+          "selected_attributes": "Zu überwachende Attribute"
+        }
+      },
+      "reconfigure_device": {
+        "title": "USV-Gerät neu konfigurieren",
+        "description": "Aktualisieren Sie die Verbindungsdaten und ausgewählten Attribute für ein bestehendes USV-Gerät.",
+        "data": {
+          "device_name": "Gerätename",
+          "device_type": "Gerätetyp",
+          "device_host": "Geräte-Host",
+          "device_port": "Geräte-Port",
+          "username": "Benutzername",
+          "password": "Passwort",
+          "selected_attributes": "Ausgewählte Attribute (kommagetrennt)"
+        }
+      },
+      "remove_device": {
+        "title": "USV-Gerät entfernen",
+        "data": {
+          "device_name": "Gerätename"
+        }
+      },
+      "set_interval": {
+        "title": "Aktualisierungsintervall festlegen",
+        "data": {
+          "update_interval": "Aktualisierungsintervall (Sekunden)"
+        }
+      }
+    }
+  },
+  "config_subentries": {
+    "device": {
+      "entry_type": "USV-Gerät",
+      "abort": {
+        "reconfigure_successful": "Gerät erfolgreich neu konfiguriert."
+      },
+      "create_entry": {
+        "default": "Das USV-Gerät wurde hinzugefügt."
+      },
+      "error": {
+        "already_configured": "Ein Gerät mit diesem Namen existiert bereits.",
+        "cannot_connect": "Verbindung nicht möglich"
+      },
+      "initiate_flow": {
+        "reconfigure": "Gerät neu konfigurieren",
+        "user": "Neue USV hinzufügen"
+      },
+      "step": {
+        "user": {
+          "title": "USV-Gerät hinzufügen",
+          "description": "Registrieren Sie ein USV-Gerät beim USV-Monitor-Server.",
+          "data": {
+            "device_name": "Gerätename",
+            "device_type": "Gerätetyp",
+            "device_host": "Geräte-Host",
+            "device_port": "Geräte-Port",
+            "username": "Benutzername",
+            "password": "Passwort",
+            "selected_attributes": "Ausgewählte Attribute (kommagetrennt)"
+          }
+        }
+      }
+    }
+  }
+}

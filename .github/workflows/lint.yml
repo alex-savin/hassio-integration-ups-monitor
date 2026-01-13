@@ -1,0 +1,40 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  ruff:
+    name: Ruff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install ruff
+        run: pip install ruff
+      - name: Run ruff check
+        run: ruff check custom_components/
+      - name: Run ruff format check
+        run: ruff format --check custom_components/
+
+  mypy:
+    name: MyPy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          pip install mypy homeassistant aiohttp async-timeout
+      - name: Run mypy
+        run: mypy custom_components/ --ignore-missing-imports --no-error-summary || true

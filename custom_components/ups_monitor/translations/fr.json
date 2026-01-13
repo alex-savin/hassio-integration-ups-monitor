@@ -1,0 +1,117 @@
+{
+  "title": "Moniteur d'onduleur",
+  "config": {
+    "error": {
+      "invalid_url": "URL invalide",
+      "cannot_connect": "Impossible de se connecter"
+    },
+    "step": {
+      "user": {
+        "title": "Connecter le Moniteur d'onduleur",
+        "description": "Entrez l'URL du serveur du Moniteur d'onduleur et l'intervalle de mise à jour optionnel.",
+        "data": {
+          "server_url": "URL du serveur",
+          "update_interval": "Intervalle de mise à jour (secondes)"
+        }
+      }
+    }
+  },
+  "options": {
+    "abort": {
+      "no_devices": "Aucun appareil disponible."
+    },
+    "error": {
+      "cannot_connect": "Impossible de se connecter à l'onduleur. Veuillez vérifier les paramètres de connexion.",
+      "already_exists": "Un appareil avec ce nom existe déjà."
+    },
+    "step": {
+      "init": {
+        "title": "Options du Moniteur d'onduleur",
+        "menu_options": {
+          "add_device": "Ajouter un nouvel onduleur",
+          "remove_device": "Supprimer un appareil",
+          "reconfigure_device": "Reconfigurer un appareil",
+          "set_interval": "Définir l'intervalle de mise à jour"
+        }
+      },
+      "add_device": {
+        "title": "Ajouter un onduleur",
+        "description": "Entrez les informations de connexion de l'appareil. La connexion sera testée avant de passer à la sélection des attributs.",
+        "data": {
+          "device_name": "Nom de l'appareil",
+          "device_type": "Type d'appareil",
+          "device_host": "Hôte de l'appareil",
+          "device_port": "Port de l'appareil",
+          "username": "Nom d'utilisateur",
+          "password": "Mot de passe"
+        }
+      },
+      "select_attributes": {
+        "title": "Sélectionner les attributs pour {device_name}",
+        "description": "{attribute_count} attributs trouvés. Choisissez ceux à surveiller. Tous les attributs sont sélectionnés par défaut.",
+        "data": {
+          "selected_attributes": "Attributs à surveiller"
+        }
+      },
+      "reconfigure_device": {
+        "title": "Reconfigurer l'onduleur",
+        "description": "Mettez à jour les informations de connexion et les attributs sélectionnés pour un onduleur existant.",
+        "data": {
+          "device_name": "Nom de l'appareil",
+          "device_type": "Type d'appareil",
+          "device_host": "Hôte de l'appareil",
+          "device_port": "Port de l'appareil",
+          "username": "Nom d'utilisateur",
+          "password": "Mot de passe",
+          "selected_attributes": "Attributs sélectionnés (séparés par des virgules)"
+        }
+      },
+      "remove_device": {
+        "title": "Supprimer l'onduleur",
+        "data": {
+          "device_name": "Nom de l'appareil"
+        }
+      },
+      "set_interval": {
+        "title": "Définir l'intervalle de mise à jour",
+        "data": {
+          "update_interval": "Intervalle de mise à jour (secondes)"
+        }
+      }
+    }
+  },
+  "config_subentries": {
+    "device": {
+      "entry_type": "Onduleur",
+      "abort": {
+        "reconfigure_successful": "Appareil reconfiguré avec succès."
+      },
+      "create_entry": {
+        "default": "L'onduleur a été ajouté."
+      },
+      "error": {
+        "already_configured": "Un appareil avec ce nom existe déjà.",
+        "cannot_connect": "Impossible de se connecter"
+      },
+      "initiate_flow": {
+        "reconfigure": "Reconfigurer l'appareil",
+        "user": "Ajouter un nouvel onduleur"
+      },
+      "step": {
+        "user": {
+          "title": "Ajouter un onduleur",
+          "description": "Enregistrez un onduleur auprès du serveur du Moniteur d'onduleur.",
+          "data": {
+            "device_name": "Nom de l'appareil",
+            "device_type": "Type d'appareil",
+            "device_host": "Hôte de l'appareil",
+            "device_port": "Port de l'appareil",
+            "username": "Nom d'utilisateur",
+            "password": "Mot de passe",
+            "selected_attributes": "Attributs sélectionnés (séparés par des virgules)"
+          }
+        }
+      }
+    }
+  }
+}

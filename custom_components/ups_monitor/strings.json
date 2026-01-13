@@ -1,0 +1,110 @@
+{
+  "title": "UPS Monitor",
+  "config": {
+    "error": {
+      "invalid_url": "Invalid URL",
+      "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]"
+    },
+    "step": {
+      "user": {
+        "title": "Connect UPS Monitor",
+        "description": "Enter the UPS Monitor server URL and optional update interval.",
+        "data": {
+          "server_url": "Server URL",
+          "update_interval": "Update interval (seconds)"
+        }
+      }
+    }
+  },
+  "options": {
+    "abort": {
+      "no_devices": "No devices available."
+    },
+    "error": {
+      "cannot_connect": "Unable to connect to the UPS device. Please check the connection details.",
+      "already_exists": "A device with this name already exists."
+    },
+    "step": {
+      "init": {
+        "title": "UPS Monitor options",
+        "menu_options": {
+          "add_device": "Add new UPS",
+          "remove_device": "Remove Device",
+          "set_interval": "Set update interval"
+        }
+      },
+      "add_device": {
+        "title": "Add UPS Device",
+        "description": "Enter the UPS Device connection details. The device will be tested before proceeding to attribute selection.",
+        "data": {
+          "device_name": "Device Name",
+          "device_type": "Device Type",
+          "device_host": "Device Host",
+          "device_port": "Device Port",
+          "username": "Username",
+          "password": "Password"
+        }
+      },
+      "add_device_attributes": {
+        "title": "Select Attributes",
+        "description": "Choose which UPS attributes to monitor. If none are selected, all available attributes will be monitored.",
+        "data": {
+          "selected_attributes": "Attributes to monitor"
+        }
+      },
+      "select_attributes": {
+        "title": "Select Attributes for {device_name}",
+        "description": "Found {attribute_count} attributes. Choose which ones to monitor. All attributes are selected by default.",
+        "data": {
+          "selected_attributes": "Attributes to monitor"
+        }
+      },
+      "remove_device": {
+        "title": "Remove UPS Device",
+        "data": {
+          "device_name": "Device Name"
+        }
+      },
+      "set_interval": {
+        "title": "Set update interval",
+        "data": {
+          "update_interval": "Update interval (seconds)"
+        }
+      }
+    }
+  },
+  "config_subentries": {
+    "device": {
+      "entry_type": "UPS device",
+      "abort": {
+        "reconfigure_successful": "[%key:common::config_flow::abort::reconfigure_successful%]"
+      },
+      "create_entry": {
+        "default": "UPS device was added."
+      },
+      "error": {
+        "already_configured": "A device with this name already exists.",
+        "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]"
+      },
+      "initiate_flow": {
+        "reconfigure": "Reconfigure device",
+        "user": "Add new UPS"
+      },
+      "step": {
+        "user": {
+          "title": "Add UPS device",
+          "description": "Register a UPS device with the UPS Monitor server.",
+          "data": {
+            "device_name": "Device name",
+            "device_type": "Device type",
+            "device_host": "Device host",
+            "device_port": "Device port",
+            "username": "Username",
+            "password": "Password",
+            "selected_attributes": "Selected attributes (comma-separated)"
+          }
+        }
+      }
+    }
+  }
+}

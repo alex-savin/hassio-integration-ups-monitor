@@ -1,0 +1,117 @@
+{
+  "title": "Monitor de SAI",
+  "config": {
+    "error": {
+      "invalid_url": "URL inválida",
+      "cannot_connect": "No se puede conectar"
+    },
+    "step": {
+      "user": {
+        "title": "Conectar Monitor de SAI",
+        "description": "Introduzca la URL del servidor Monitor de SAI y el intervalo de actualización opcional.",
+        "data": {
+          "server_url": "URL del servidor",
+          "update_interval": "Intervalo de actualización (segundos)"
+        }
+      }
+    }
+  },
+  "options": {
+    "abort": {
+      "no_devices": "No hay dispositivos disponibles."
+    },
+    "error": {
+      "cannot_connect": "No se puede conectar al dispositivo SAI. Por favor, verifique los datos de conexión.",
+      "already_exists": "Ya existe un dispositivo con este nombre."
+    },
+    "step": {
+      "init": {
+        "title": "Opciones del Monitor de SAI",
+        "menu_options": {
+          "add_device": "Añadir nuevo SAI",
+          "remove_device": "Eliminar dispositivo",
+          "reconfigure_device": "Reconfigurar dispositivo",
+          "set_interval": "Establecer intervalo de actualización"
+        }
+      },
+      "add_device": {
+        "title": "Añadir dispositivo SAI",
+        "description": "Introduzca los datos de conexión del dispositivo. Se probará la conexión antes de proceder a la selección de atributos.",
+        "data": {
+          "device_name": "Nombre del dispositivo",
+          "device_type": "Tipo de dispositivo",
+          "device_host": "Host del dispositivo",
+          "device_port": "Puerto del dispositivo",
+          "username": "Nombre de usuario",
+          "password": "Contraseña"
+        }
+      },
+      "select_attributes": {
+        "title": "Seleccionar atributos para {device_name}",
+        "description": "Se encontraron {attribute_count} atributos. Elija cuáles desea monitorizar. Todos los atributos están seleccionados por defecto.",
+        "data": {
+          "selected_attributes": "Atributos a monitorizar"
+        }
+      },
+      "reconfigure_device": {
+        "title": "Reconfigurar dispositivo SAI",
+        "description": "Actualice los datos de conexión y los atributos seleccionados para un dispositivo SAI existente.",
+        "data": {
+          "device_name": "Nombre del dispositivo",
+          "device_type": "Tipo de dispositivo",
+          "device_host": "Host del dispositivo",
+          "device_port": "Puerto del dispositivo",
+          "username": "Nombre de usuario",
+          "password": "Contraseña",
+          "selected_attributes": "Atributos seleccionados (separados por comas)"
+        }
+      },
+      "remove_device": {
+        "title": "Eliminar dispositivo SAI",
+        "data": {
+          "device_name": "Nombre del dispositivo"
+        }
+      },
+      "set_interval": {
+        "title": "Establecer intervalo de actualización",
+        "data": {
+          "update_interval": "Intervalo de actualización (segundos)"
+        }
+      }
+    }
+  },
+  "config_subentries": {
+    "device": {
+      "entry_type": "Dispositivo SAI",
+      "abort": {
+        "reconfigure_successful": "Dispositivo reconfigurado correctamente."
+      },
+      "create_entry": {
+        "default": "El dispositivo SAI fue añadido."
+      },
+      "error": {
+        "already_configured": "Ya existe un dispositivo con este nombre.",
+        "cannot_connect": "No se puede conectar"
+      },
+      "initiate_flow": {
+        "reconfigure": "Reconfigurar dispositivo",
+        "user": "Añadir nuevo SAI"
+      },
+      "step": {
+        "user": {
+          "title": "Añadir dispositivo SAI",
+          "description": "Registre un dispositivo SAI con el servidor Monitor de SAI.",
+          "data": {
+            "device_name": "Nombre del dispositivo",
+            "device_type": "Tipo de dispositivo",
+            "device_host": "Host del dispositivo",
+            "device_port": "Puerto del dispositivo",
+            "username": "Nombre de usuario",
+            "password": "Contraseña",
+            "selected_attributes": "Atributos seleccionados (separados por comas)"
+          }
+        }
+      }
+    }
+  }
+}

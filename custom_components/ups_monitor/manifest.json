@@ -1,0 +1,12 @@
+{
+  "domain": "ups_monitor",
+  "name": "UPS Monitor",
+  "version": "1.0.0",
+  "documentation": "https://github.com/alex-savin/hassio-integration-ups-monitor",
+  "issue_tracker": "https://github.com/alex-savin/hassio-integration-ups-monitor/issues",
+  "requirements": ["websockets>=10.0"],
+  "codeowners": ["@alex-savin"],
+  "config_flow": true,
+  "integration_type": "hub",
+  "iot_class": "local_push"
+}
