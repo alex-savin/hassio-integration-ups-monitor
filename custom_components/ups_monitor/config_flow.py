@@ -97,7 +97,7 @@ class UPSMonitorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def _async_validate_server(self, server_url: str) -> bool:
         """Validate server by checking connectivity.
-        
+
         For WebSocket URLs, attempt to convert to HTTP and check if the host is reachable.
         For HTTP(S) URLs, check directly.
         """
@@ -105,7 +105,7 @@ class UPSMonitorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         url = build_http_url(server_url, "/")
         if not url:
             return False
-            
+
         try:
             async with aiohttp.ClientSession() as session:
                 # Use HEAD request for minimal overhead
