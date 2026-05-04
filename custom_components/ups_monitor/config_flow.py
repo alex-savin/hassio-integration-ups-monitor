@@ -4,6 +4,8 @@ import logging
 from typing import List
 from urllib.parse import quote, urlparse
 
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
+
 import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.core import callback
@@ -96,27 +98,20 @@ class UPSMonitorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         )
 
     async def _async_validate_server(self, server_url: str) -> bool:
-        """Validate server by checking connectivity.
-
-        For WebSocket URLs, attempt to convert to HTTP and check if the host is reachable.
-        For HTTP(S) URLs, check directly.
-        """
-        # Convert WS URLs to HTTP for connectivity check
+        """Validate server by checking HTTP connectivity to the WS host."""
+        if not server_url.startswith(("ws://", "wss://")):
+            return False
         url = build_http_url(server_url, "/")
         if not url:
             return False
-
+        session = async_get_clientsession(self.hass)
         try:
-            async with aiohttp.ClientSession() as session:
-                # Use HEAD request for minimal overhead
-                async with session.head(
-                    url, timeout=aiohttp.ClientTimeout(total=5), allow_redirects=True
-                ) as _:
-                    # Consider any response (except connection error) as valid
-                    # The server might not have a root endpoint, but if we can reach it, validation passes
-                    return True
-        except (aiohttp.ClientError, asyncio.TimeoutError):
-            _LOGGER.debug("Could not validate server at %s", server_url)
+            async with session.head(
+                url, timeout=aiohttp.ClientTimeout(total=5), allow_redirects=True
+            ):
+                return True
+        except (aiohttp.ClientError, asyncio.TimeoutError) as err:
+            _LOGGER.debug("Could not validate server at %s: %s", server_url, err)
             return False
 
 
