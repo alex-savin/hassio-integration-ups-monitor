@@ -4,6 +4,8 @@ import logging
 from typing import List
 from urllib.parse import quote, urlparse
 
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
+
 import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.core import callback
@@ -96,16 +98,20 @@ class UPSMonitorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         )
 
     async def _async_validate_server(self, server_url: str) -> bool:
-        url = build_http_url(server_url, "/health")
+        """Validate server by checking HTTP connectivity to the WS host."""
+        if not server_url.startswith(("ws://", "wss://")):
+            return False
+        url = build_http_url(server_url, "/")
         if not url:
             return False
+        session = async_get_clientsession(self.hass)
         try:
-            async with aiohttp.ClientSession() as session:
-                async with session.get(
-                    url, timeout=aiohttp.ClientTimeout(total=5)
-                ) as resp:
-                    return resp.status == 200
-        except (aiohttp.ClientError, asyncio.TimeoutError):
+            async with session.head(
+                url, timeout=aiohttp.ClientTimeout(total=5), allow_redirects=True
+            ):
+                return True
+        except (aiohttp.ClientError, asyncio.TimeoutError) as err:
+            _LOGGER.debug("Could not validate server at %s: %s", server_url, err)
             return False
 
 
