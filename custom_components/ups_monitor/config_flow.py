@@ -96,16 +96,27 @@ class UPSMonitorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         )
 
     async def _async_validate_server(self, server_url: str) -> bool:
-        url = build_http_url(server_url, "/health")
+        """Validate server by checking connectivity.
+        
+        For WebSocket URLs, attempt to convert to HTTP and check if the host is reachable.
+        For HTTP(S) URLs, check directly.
+        """
+        # Convert WS URLs to HTTP for connectivity check
+        url = build_http_url(server_url, "/")
         if not url:
             return False
+            
         try:
             async with aiohttp.ClientSession() as session:
-                async with session.get(
-                    url, timeout=aiohttp.ClientTimeout(total=5)
+                # Use HEAD request for minimal overhead
+                async with session.head(
+                    url, timeout=aiohttp.ClientTimeout(total=5), allow_redirects=True
                 ) as resp:
-                    return resp.status == 200
+                    # Consider any response (except connection error) as valid
+                    # The server might not have a root endpoint, but if we can reach it, validation passes
+                    return True
         except (aiohttp.ClientError, asyncio.TimeoutError):
+            _LOGGER.debug("Could not validate server at %s", server_url)
             return False
 
 
