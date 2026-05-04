@@ -111,7 +111,7 @@ class UPSMonitorConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 # Use HEAD request for minimal overhead
                 async with session.head(
                     url, timeout=aiohttp.ClientTimeout(total=5), allow_redirects=True
-                ) as resp:
+                ) as _:
                     # Consider any response (except connection error) as valid
                     # The server might not have a root endpoint, but if we can reach it, validation passes
                     return True
