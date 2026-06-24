@@ -8,7 +8,7 @@ Custom Home Assistant integration that monitors UPS devices via the `go-ups` web
 
 ## Prerequisites
 
-This integration requires the **[UPS Monitor Add-on](https://github.com/alex-savin/hassio-apps/tree/main/ups-monitor)** to be installed and running.
+This integration requires the **[UPS Monitor Add-on](https://github.com/alex-savin/hassio-app-ups-monitor)** to be installed and running.
 
 The add-on connects to your UPS devices using apcupsd or NUT protocols and exposes their status via a local websocket. This integration then connects to that websocket to create Home Assistant entities.
 
@@ -17,7 +17,7 @@ The add-on connects to your UPS devices using apcupsd or NUT protocols and expos
 1. Add the add-on repository to Home Assistant:
    - Go to **Settings → Add-ons → Add-on Store**
    - Click the three dots (⋮) in the top right → **Repositories**
-   - Add: `https://github.com/alex-savin/hassio-apps`
+   - Add: `https://github.com/alex-savin/hassio-app-ups-monitor`
 2. Find and install **UPS Monitor**
 3. Configure the add-on with your UPS connection details
 4. Start the add-on
