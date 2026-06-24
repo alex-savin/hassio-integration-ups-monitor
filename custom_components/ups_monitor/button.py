@@ -199,7 +199,7 @@ class UPSCommandButton(ButtonEntity):
         if not base_http:
             raise HomeAssistantError("UPS server base URL is unavailable")
 
-        # Build command URL - the Go server expects POST to /api/device with command
+        # The add-on executes commands via POST /api/command
         url = f"{base_http}/api/command"
         payload = {
             "device": self._device_name,
@@ -213,7 +213,11 @@ class UPSCommandButton(ButtonEntity):
                 result = await resp.json()
 
             if resp.status >= 400:
-                message = result.get("error", "unknown error")
+                # The add-on returns `error` for malformed requests but `message`
+                # for command-execution failures (CommandResult); accept either.
+                message = (
+                    result.get("error") or result.get("message") or "unknown error"
+                )
                 self._last_result = {"success": False, "error": message}
                 raise HomeAssistantError(
                     f"Command failed ({resp.status}) for {self.name}: {message}"
